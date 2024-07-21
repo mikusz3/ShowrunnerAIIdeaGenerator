@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showrunner Idea Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Showrunner Idea Generator</div>
+    </header>
+    <main>
+        <div class="generator-form">
+            <h2>Watch this...</h2>
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <select id="genre">
+                    <option value="Manga / Anime">Manga / Anime</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="subgenre">Subgenre (Optional)</label>
+                <input type="text" id="subgenre" placeholder="Add Another Subgenre">
+            </div>
+            <div class="form-group">
+                <label for="storyType">Meets</label>
+                <input type="text" id="storyType" placeholder="1920s Detective Noir">
+            </div>
+            <div class="form-group">
+                <label for="personalFlavor">With a touch of</label>
+                <input type="text" id="personalFlavor" placeholder="Tarantino">
+            </div>
+            <button id="generateButton">Watch Show</button>
+        </div>
+    </main>
+    <footer>
+        <p>This app isn't affiliated with Showrunner AI nor its creators The Simulation (@fablesimulation on Twitter/X).</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
