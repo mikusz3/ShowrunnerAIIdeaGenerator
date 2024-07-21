@@ -13,7 +13,7 @@ document.getElementById('generateButton').addEventListener('click', async functi
         personalFlavor
     };
 
-    const openaiApiKey = 'sk-proj-8NJC6ayFV3nfPj7DPF46T3BlbkFJyAPCUQUEEQIwdfu1xkNj';
+    export GROQ_API_KEY=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
     const prompt = `Generate a unique title and a brief description for a TV show with the following elements:
     - Genre: ${genre}
     - Subgenre: ${subgenre ? subgenre : 'None'}
