@@ -4,6 +4,8 @@ document.getElementById('generateButton').addEventListener('click', async functi
     const storyType = document.getElementById('storyType').value;
     const personalFlavor = document.getElementById('personalFlavor').value;
 
+    console.log('Inputs:', { genre, subgenre, storyType, personalFlavor });
+
     const idea = {
         genre,
         subgenre,
@@ -20,6 +22,7 @@ document.getElementById('generateButton').addEventListener('click', async functi
     Provide the title and description in the format: Title: [title], Description: [description].`;
 
     try {
+        console.log('Sending request to GroqCloud API...');
         const response = await fetch('https://api.groqcloud.com/v1/completions', {
             method: 'POST',
             headers: {
@@ -34,6 +37,10 @@ document.getElementById('generateButton').addEventListener('click', async functi
         });
 
         console.log('API Response Status:', response.status);
+
+        if (!response.ok) {
+            throw new Error(`API request failed with status ${response.status}`);
+        }
 
         const data = await response.json();
         console.log('API Response Data:', data);
@@ -57,6 +64,7 @@ document.getElementById('generateButton').addEventListener('click', async functi
         localStorage.setItem('idea', JSON.stringify(idea));
         console.log('Idea saved to localStorage:', idea);
 
+        console.log('Redirecting to idea.html');
         window.location.href = 'idea.html';
     } catch (error) {
         console.error('Error generating idea:', error);
