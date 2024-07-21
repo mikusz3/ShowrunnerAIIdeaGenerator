@@ -4,8 +4,6 @@ document.getElementById('generateButton').addEventListener('click', async functi
     const storyType = document.getElementById('storyType').value;
     const personalFlavor = document.getElementById('personalFlavor').value;
 
-    console.log('Inputs:', { genre, subgenre, storyType, personalFlavor });
-
     const idea = {
         genre,
         subgenre,
@@ -13,7 +11,7 @@ document.getElementById('generateButton').addEventListener('click', async functi
         personalFlavor
     };
 
-    export GROQ_API_KEY=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
+    const groqCloudApiKey = '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';
     const prompt = `Generate a unique title and a brief description for a TV show with the following elements:
     - Genre: ${genre}
     - Subgenre: ${subgenre ? subgenre : 'None'}
@@ -22,11 +20,11 @@ document.getElementById('generateButton').addEventListener('click', async functi
     Provide the title and description in the format: Title: [title], Description: [description].`;
 
     try {
-        const response = await fetch('https://api.openai.com/v1/completions', {
+        const response = await fetch('https://api.groqcloud.com/v1/completions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${openaiApiKey}`
+                'Authorization': `Bearer ${groqCloudApiKey}`
             },
             body: JSON.stringify({
                 model: 'text-davinci-003',
