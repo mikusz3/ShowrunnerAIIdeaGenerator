@@ -3,44 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Showrunner Idea Generator</title>
+    <title>TV Show Idea Generator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo">Showrunner Idea Generator</div>
-    </header>
-    <main>
-        <div class="generator-form">
-            <h2>Watch this...</h2>
-            <div class="form-group">
-                <label for="genre">Genre</label>
-                <select id="genre">
-                    <option value="Manga / Anime">Manga / Anime</option>
-                    <option value="Sci-Fi">Sci-Fi</option>
-                    <option value="Fantasy">Fantasy</option>
-                    <!-- Add more options as needed -->
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="subgenre">Subgenre (Optional)</label>
-                <input type="text" id="subgenre" placeholder="Add Another Subgenre">
-            </div>
-            <div class="form-group">
-                <label for="storyType">Meets</label>
-                <input type="text" id="storyType" placeholder="1920s Detective Noir">
-            </div>
-            <div class="form-group">
-                <label for="personalFlavor">With a touch of</label>
-                <input type="text" id="personalFlavor" placeholder="Tarantino">
-            </div>
-            <button id="generateButton">Watch Show</button>
+    <div class="container">
+        <h1>Showrunner AI: TV Show Idea Generator</h1>
+        <div class="form-container">
+            <select id="genre">
+                <option value="">Select Genre</option>
+                <option value="Manga / Anime">Manga / Anime</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Drama">Drama</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Horror">Horror</option>
+                <option value="Action">Action</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Romance">Romance</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Historical">Historical</option>
+            </select>
+            <select id="subgenre">
+                <option value="">Select Subgenre (Optional)</option>
+            </select>
+            <input type="text" id="storyType" placeholder="Type of story (e.g., 1920s Detective Noir)">
+            <input type="text" id="personalTouch" placeholder="Personal touch (e.g., Tarantino)">
+            <button id="generate">Generate Idea</button>
         </div>
-    </main>
-    <footer>
-        <p>This app isn't affiliated with Showrunner AI nor its creators The Simulation (@fablesimulation on Twitter/X).</p>
-    </footer>
-
+        <div id="result" class="hidden">
+            <h2>Your TV Show Idea</h2>
+            <h3 id="showTitle"></h3>
+            <p id="showDescription"></p>
+            <img id="showPoster" alt="Show Poster" width="376" height="504">
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
