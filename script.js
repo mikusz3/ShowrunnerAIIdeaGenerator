@@ -37,22 +37,54 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('generate').addEventListener('click', generateIdea);
 });
 
-function generateIdea() {
+async function generateIdea() {
     const genre = document.getElementById('genre').value;
     const subgenre = document.getElementById('subgenre').value;
     const storyType = document.getElementById('storyType').value;
     const personalTouch = document.getElementById('personalTouch').value;
 
-    // Here you would typically make an API call to your AI service
-    // For now, we'll just display a placeholder result
-    const result = document.getElementById('result');
-    const showTitle = document.getElementById('showTitle');
-    const showDescription = document.getElementById('showDescription');
-    const showPoster = document.getElementById('showPoster');
+    const prompt = `Generate a title and description for a ${genre} ${subgenre} show that is a ${storyType} tale with ${personalTouch} elements.`;
 
-    showTitle.textContent = `${genre} ${subgenre}: A ${storyType} Tale`;
-    showDescription.textContent = `An innovative ${genre} series with ${subgenre} elements, set in a ${storyType} world. This show brings a unique ${personalTouch} flavor to the screen.`;
-    showPoster.src = 'https://via.placeholder.com/376x504.png?text=Show+Poster';
+    // Replace with your OpenAI API endpoint and key
+    const apiKey = 'your-openai-api-key';
+    const apiEndpoint = 'https://api.openai.com/v1/engines/davinci-codex/completions';
 
-    result.classList.remove('hidden');
+    try {
+        const response = await fetch(apiEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`,
+            },
+            body: JSON.stringify({
+                prompt: prompt,
+                max_tokens: 150,
+                n: 1,
+                stop: null,
+                temperature: 0.7,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        const text = data.choices[0].text.trim().split('\n');
+        const title = text[0];
+        const description = text.slice(1).join(' ');
+
+        const result = document.getElementById('result');
+        const showTitle = document.getElementById('showTitle');
+        const showDescription = document.getElementById('showDescription');
+        const showPoster = document.getElementById('showPoster');
+
+        showTitle.textContent = title;
+        showDescription.textContent = description;
+        showPoster.src = 'https://via.placeholder.com/376x504.png?text=Show+Poster';
+
+        result.classList.remove('hidden');
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    }
 }
